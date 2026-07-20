@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/C++패턴연습",
-      "program": "c:/C++패턴연습/build/Debug/outDebug",
+      "cwd": "c:/C++패턴연습/C",
+      "program": "c:/C++패턴연습/C/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
