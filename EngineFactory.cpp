@@ -4,20 +4,23 @@
 #include "Engine_3.h"
 #include <iostream>
 
-EngineController* EngineFactory::createEngine(EngineType type) {
-    // 요리사(Factory)가 주문(type)에 맞춰 적절한 요리(엔진 객체)를 만들어 내보냅니다.
-    switch (type) {
-        case GASOLINE: 
-            std::cout << "[Factory] 가솔린 엔진(Engine_1)을 생성합니다." << std::endl;
-            return new Engine_1();
-        case ELECTRIC: 
-            std::cout << "[Factory] 전기 모터(Engine_2)를 생성합니다." << std::endl;
-            return new Engine_2();
-        case HYBRID:   
-            std::cout << "[Factory] 하이브리드 엔진(Engine_3)을 생성합니다." << std::endl;
-            return new Engine_3();
-        default:       
-            std::cout << "[Factory] 알 수 없는 엔진 타입입니다." << std::endl;
-            return nullptr;
-    }
+// 각 전담 공장들이 자신의 특기에 맞는 엔진을 직접 조립하여 반환합니다.
+
+EngineController *Engine_1Factory::createEngine() {
+  std::cout << "[Engine_1Factory] 가솔린 엔진을 위한 부품을 조립합니다..."
+            << std::endl;
+  return new Engine_1();
+}
+
+EngineController *Engine_2Factory::createEngine() {
+  std::cout << "[Engine_2Factory] 전기 모터를 위한 배터리를 연결합니다..."
+            << std::endl;
+  return new Engine_2();
+}
+
+EngineController *Engine_3Factory::createEngine() {
+  std::cout
+      << "[Engine_3Factory] 하이브리드용 가솔린과 전기 시스템을 연동합니다..."
+      << std::endl;
+  return new Engine_3();
 }

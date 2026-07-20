@@ -31,23 +31,29 @@ int main() {
   cout << endl;
   */
 
-  // 팩토리 패턴을 사용하여 엔진 생성 (main에서는 구체적인 Engine_1의 존재를 몰라도 됩니다!)
-  EngineController *engineCtrl = EngineFactory::createEngine(EngineFactory::GASOLINE);
+  // 팩토리 메서드 패턴: 가솔린 엔진 전담 공장을 세웁니다.
+  EngineFactory *factory = new Engine_1Factory();
+  // 전담 공장에게 엔진 생성을 요청합니다.
+  EngineController *engineCtrl = factory->createEngine();
 
   Vehicle *myCar = new Vehicle(engineCtrl);
   myCar->startOperation();
 
   // 1. 기존에 들어있던 Engine_1 다 썼으니 지워주기
   delete engineCtrl;
+  delete factory; // 가솔린 공장 철거
 
-  // 2. 새 엔진 장착 (마찬가지로 팩토리에 주문만 넣습니다)
-  engineCtrl = EngineFactory::createEngine(EngineFactory::ELECTRIC);
+  // 2. 새 엔진 장착을 위해 전기 모터 전담 공장을 세웁니다.
+  factory = new Engine_2Factory();
+  engineCtrl = factory->createEngine();
+  
   myCar->changeEngine(engineCtrl);
   myCar->startOperation();
 
-  // 3. 프로그램 끝나기 전에 남아있는 myCar와 Engine_2 지워주기
+  // 3. 프로그램 끝나기 전에 남아있는 객체들 정리
   delete myCar;
   delete engineCtrl;
+  delete factory;
 
   return 0;
 }

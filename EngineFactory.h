@@ -3,17 +3,30 @@
 
 #include "EngineController.h"
 
-// 엔진 생성을 전담하는 팩토리 클래스
+// 추상 팩토리 클래스 (공장들의 공통 규칙)
 class EngineFactory {
 public:
-    enum EngineType {
-        GASOLINE,
-        ELECTRIC,
-        HYBRID
-    };
+  virtual ~EngineFactory() {}
+  // 팩토리 메서드 (순수 가상 함수): 구체적인 생성은 자식 공장들에게 맡깁니다.
+  virtual EngineController *createEngine() = 0;
+};
 
-    // 팩토리 메서드: 타입에 맞는 엔진 객체를 생성하여 반환합니다.
-    static EngineController* createEngine(EngineType type);
+// 가솔린 엔진(Engine_1) 전담 공장
+class Engine_1Factory : public EngineFactory {
+public:
+  EngineController *createEngine() override;
+};
+
+// 전기 모터(Engine_2) 전담 공장
+class Engine_2Factory : public EngineFactory {
+public:
+  EngineController *createEngine() override;
+};
+
+// 하이브리드 엔진(Engine_3) 전담 공장
+class Engine_3Factory : public EngineFactory {
+public:
+  EngineController *createEngine() override;
 };
 
 #endif // ENGINEFACTORY_H
