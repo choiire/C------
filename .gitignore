@@ -1,0 +1,12 @@
+# 컴파일된 실행 파일 및 오브젝트 파일
+*.exe
+*.o
+*.obj
+
+# 빌드 관련 임시 폴더
+build/
+C/build/
+CPP/build/
+
+# VSCode 에디터 설정
+.vscode/
